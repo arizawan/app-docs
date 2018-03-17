@@ -76,7 +76,7 @@ It will run database migration and add default backend users. Now, if you go to 
 
 ![N|Solid](https://cdn.rawgit.com/arizawan/app-docs/19af03a8/zipfileme/01.%20Upload.png)
 
-### Apache Laravel virual host example
+### Apache Laravel virtual host example
 
 ```sh
 <VirtualHost *:80>
@@ -90,7 +90,7 @@ It will run database migration and add default backend users. Now, if you go to 
     </Directory>
 </VirtualHost>
 ```
-### Nginx Laravel virual host example
+### Nginx Laravel virtual host example
 
 ```sh
 server {
@@ -113,9 +113,9 @@ server {
     }
 }
 ```
-**Your configurations could be diffrent**
+**Your configurations could be different**
 
-**Make sure you have setup virtual host currectly**
+**Make sure you have setup virtual host currently**
 
 [Laravel Doc](https://laravel.com/docs/5.5/installation)
 
