@@ -16,65 +16,96 @@ ZipFileMe is a cloud-enabled, mobile-ready, s3 integrated File uploading and sha
   - Ability to share already shared files to anyone without downloading files
   - Ability to add remove files from already shared link
   -  30 days validity of every share
-  -  Backend access to view all share codes and list other details
-
 
 You can also:
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
-  - Drag and drop markdown and HTML files into Dillinger
-  - Export documents as Markdown, HTML and PDF
+  - Login to backend to see the list of shares
+  - Download Zipped files from backend directly
 
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
-
-### Tech
-
-Dillinger uses a number of open source projects to work properly:
-
-* [AngularJS] - HTML enhanced for web apps!
-* [Ace Editor] - awesome web-based text editor
-* [markdown-it] - Markdown parser done right. Fast and easy to extend.
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Gulp] - the streaming build system
-* [Breakdance](http://breakdance.io) - HTML to Markdown converter
-* [jQuery] - duh
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
 
 ### Installation
 
-Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
+Dillinger requires *PHP 7.0*, *MySql 5.6+*, *Apache/Nginx* to run.
 
-Install the dependencies and devDependencies and start the server.
-
-```sh
-$ cd dillinger
-$ npm install -d
-$ node app
-```
-
-For production environments...
+- Create your webserver with nginx or apache
+- Create a virtual host for this application, **this is a laravel 5.5 application.** [google it, there are tons of tutorials]
+- Install [composer](https://getcomposer.org/) 
+- Extract the zip file named *zipfileme.zip* to your virtual hosts directory.
 
 ```sh
-$ npm install --production
-$ NODE_ENV=production node app
+$ cd TO_YOUR_ZIPFILEME_ROOT_DIRECTORY [check if you can see a package.json file]
+$ mv .env.example .env
+$ nano .env [Or you can edit with any text editor]
 ```
+Make sure to update these variables:
 
-### Plugins
+```sh
+DB_CONNECTION=
+DB_HOST=
+DB_PORT=
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
 
-Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.sendgrid.net
+MAIL_PORT=587
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=
+AWS_BUCKET=
+```
+After updating configuration run these commands :
+
+```sh
+$ composer update
+$ php artisan migrate:refresh --seed
+```
+It will run database migration and add default backend users. Now, if you go to your virtual host domain, you will be able to see the homepage with file adding section :
+
+![N|Solid](https://cdn.rawgit.com/arizawan/app-docs/19af03a8/zipfileme/01.%20Upload.png)
+
+### Apache Laravel virual host example
+
+```sh
+<VirtualHost *:80>
+    DocumentRoot "/Users/myName/Projects/laravel/public"
+    ServerName myLaravel.dev
+    <Directory "/Users/myName/Projects/laravel/public">
+            AllowOverride All
+            Options FollowSymLinks +Indexes
+            Order allow,deny
+            Allow from all
+    </Directory>
+</VirtualHost>
+```
+### Nginx Laravel virual host example
+
+```sh
+server {
+    listen 80;
+    root /usr/share/nginx/html/laravel/public;
+    index index.php index.html index.htm
+    server_name laravel.dev;
+    
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        try_files $uri /index.php =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+```
+**Your configurations could be diffrent**
 
 | Plugin | README |
 | ------ | ------ |
