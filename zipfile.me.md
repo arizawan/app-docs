@@ -21,6 +21,9 @@ You can also:
   - Login to backend to see the list of shares
   - Download Zipped files from backend directly
 
+### Demo and Installation Video
+
+[![ZipFileMe Demo and Installation](https://img.youtube.com/vi/GfTkzUKBxsY/0.jpg)](https://www.youtube.com/watch?v=GfTkzUKBxsY)
 
 ### Installation
 
@@ -111,6 +114,10 @@ server {
 }
 ```
 **Your configurations could be diffrent**
+
+**Make sure you have setup virtual host currectly**
+
+[Laravel Doc](https://laravel.com/docs/5.5/installation)
 
 ### Backend access
 ```sh
