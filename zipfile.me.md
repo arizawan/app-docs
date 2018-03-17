@@ -112,3 +112,9 @@ server {
 ```
 **Your configurations could be diffrent**
 
+### Backend access
+```sh
+Admin Route : http://YOUR_DOMAIN/login
+user : superadministrator@zipfile.me
+pass : thunder.32
+```
