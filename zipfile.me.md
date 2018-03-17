@@ -1,17 +1,22 @@
-# Dillinger
+# ZipFileMe
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+![N|Solid](https://raw.githubusercontent.com/arizawan/app-docs/25d354ad/powered_by.png)
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
+ZipFileMe is a cloud-enabled, mobile-ready, s3 integrated File uploading and sharing script. It's easy to use, easy to install and very handy tool to share any type of files.
 
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
+# Features!
 
-# New Features!
-
-  - Import a HTML file and watch it magically convert to Markdown
-  - Drag and drop images (requires your Dropbox account be linked)
+  - Simple drug and drop File upload system
+  - Can Share files with multiple recipient at once
+  - Can Download all files at once by zipping them automatically
+  - Streamed Zip and download, so less resource dependency on server
+  - Use Amazon S3 as file storage
+  - Send Email Notifications to sender and receivers
+  - Link can be shared with anyone
+  - Ability to share already shared files to anyone without downloading files
+  - Ability to add remove files from already shared link
+  -  30 days validity of every share
+  -  Backend access to view all share codes and list other details
 
 
 You can also:
